@@ -1,4 +1,4 @@
 JaPassX
 =======
 
-An ASS Parser for processing
+An ASS Parser for processing to create karaoke effecs.

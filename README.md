@@ -1,4 +1,4 @@
 JaPassX
 =======
 
-An ASS Parser for processing to create karaoke effecs,only provided ways to build objects.
+An ASS Parser for processing to create karaoke effecs,JaPassX not a tool to help create ass file currently.

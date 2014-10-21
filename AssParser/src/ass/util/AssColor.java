@@ -3,27 +3,17 @@ package ass.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AssColor.
- */
-public class AssColor {
-	/*
-	 * web color notation. For example: color c = #006699 For hex notation,
+ 	 * web color notation. For example: color c = #006699 For hex notation,
 	 * prefix the values with 0x, for instance color c = 0xCC006699. In that
 	 * example, CC (the hex value of 204) is the alpha value, and the remainder
 	 * is identical to a web color.
-	 */
-	/** The r. */
+ */
+public class AssColor {
 	public int r;
-	
-	/** The g. */
 	public int g;
-	
-	/** The b. */
 	public int b;
-	
-	/** The a. */
 	public int a;
 	private boolean hasAlpha;
 	
@@ -31,11 +21,11 @@ public class AssColor {
 	 * Instantiates a new ass color.
 	 * 
 	 * @param r
-	 *            the r
+	 *            the red component.
 	 * @param g
-	 *            the g
+	 *            the green component.
 	 * @param b
-	 *            the b
+	 *            the blue component.
 	 */
 	public AssColor(int r,int g,int b){
 		this.r = r;
@@ -47,13 +37,13 @@ public class AssColor {
 	 * Instantiates a new ass color.
 	 * 
 	 * @param r
-	 *            the r
+	 *            the red component.
 	 * @param g
-	 *            the g
+	 *            the green component.
 	 * @param b
-	 *            the b
+	 *            the blue component.
 	 * @param a
-	 *            the a
+	 *            the alpha component.
 	 */
 	public AssColor(int r,int g,int b,int a){
 		this.r = r;
@@ -67,7 +57,7 @@ public class AssColor {
 	 * Instantiates a new ass color.
 	 * 
 	 * @param color
-	 *            the color
+	 *            the color string is standard ass color format like &H0BFFFFFF
 	 */
 	public AssColor(String color){
 		Pattern pattern = Pattern.compile("^&h[0-9a-f]{8}$",Pattern.CASE_INSENSITIVE);
@@ -95,9 +85,8 @@ public class AssColor {
 		
 	}
 	
-	// return string format 2 fit with processing type;
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * return string format to fit with processing type
 	 */
 	public String toString() {
 		String hexString="";

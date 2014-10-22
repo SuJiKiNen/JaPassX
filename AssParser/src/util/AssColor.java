@@ -64,10 +64,10 @@ public class AssColor {
 		Matcher matcher =  pattern.matcher(color);
 		boolean match = matcher.matches();
 		if (match) {
-			a = Integer.parseInt(color.substring(2, 3));
-			b = Integer.parseInt(color.substring(4, 5));
-			g = Integer.parseInt(color.substring(6, 7));
-			r = Integer.parseInt(color.substring(8, 9));
+			a = Integer.parseInt(color.substring(2, 3),16);
+			b = Integer.parseInt(color.substring(4, 5),16);
+			g = Integer.parseInt(color.substring(6, 7),16);
+			r = Integer.parseInt(color.substring(8, 9),16);
 			// swap red and blue component
 			int nb = r;
 			int nr = b;

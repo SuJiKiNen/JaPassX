@@ -1,15 +1,16 @@
 package ass.object;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Ass {
 	Meta meta;
-	ArrayList<Style> styles;
+	Hashtable<String,Style> styles;
 	ArrayList<Line> lines;
 	
 	public Ass(){
 		meta = new Meta();
-		styles = new ArrayList<Style>();
+		styles = new Hashtable<String, Style>();
 		lines = new ArrayList<Line>();
 	}
 	
@@ -21,11 +22,11 @@ public class Ass {
 		this.meta = meta;
 	}
 	
-	public ArrayList<Style> getStyles() {
+	public Hashtable<String, Style> getStyles() {
 		return styles;
 	}
 	
-	public void setStyles(ArrayList<Style> styles) {
+	public void setStyles(Hashtable<String,Style> styles) {
 		this.styles = styles;
 	}
 	

@@ -3,7 +3,7 @@ package ass.object;
 public class Style {
 	public String name;
 	public String fontName;
-	public String fontSize;
+	public int fontSize;
 	public String color1;
 	public String color2;
 	public String color3;

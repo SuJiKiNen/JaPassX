@@ -2,7 +2,8 @@ package ass.object;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import ass.util.AssTime;
+import util.AssTime;
+
 
 public class Line {
 	static int lineCount;
@@ -54,9 +55,6 @@ public class Line {
 	public Line(String s) {
 		// add check
 		++lineCount;
-		
-		
-		
 		s = s.substring(10);
 		Pattern p = Pattern.compile(",");
 		String[] items = p.split(s);
@@ -83,18 +81,4 @@ public class Line {
 		
 	}
 
-	int assTime2Ms(String format) {
-		// to do add check
-		format = format.replace(".", ":");
-		Pattern p = Pattern.compile(":");
-
-		String[] items = p.split(format);
-		int h = Integer.parseInt(items[0]);
-		int m = Integer.parseInt(items[1]);
-		int s = Integer.parseInt(items[2]);
-		int hs = Integer.parseInt(items[3]);
-		int ms = hs * 10 + s * 1000 + m * 60000 + h * 3600000;
-		return ms;
-	}
-	
 }

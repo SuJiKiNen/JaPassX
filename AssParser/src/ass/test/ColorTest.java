@@ -1,6 +1,6 @@
 package ass.test;
 
-import ass.util.AssColor;
+import util.AssColor;
 
 public class ColorTest {
 

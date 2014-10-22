@@ -2,6 +2,7 @@ package ass.object;
 
 import java.io.BufferedInputStream;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class AssParser {
 	private float frameRate = 23.976f;
@@ -30,7 +31,7 @@ public class AssParser {
 	 */
 	public Ass parseFile(String filename){
 		Meta meta = new Meta();
-		ArrayList<Style> styles = new ArrayList<Style>();
+		Hashtable<String,Style> styles = new Hashtable<String,Style>();
 		ArrayList<Line> lines = new ArrayList<Line>();
 		
 		//BufferedInputStream 

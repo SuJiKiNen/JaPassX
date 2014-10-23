@@ -27,4 +27,14 @@ public class Syl {
 	
 	public int i; 
 	public Style styleRef;
+	public Syl clone(){
+		Syl syl = null;
+		try {
+			syl = (Syl)super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		syl.styleRef = styleRef.clone();
+		return syl;
+	}
 }

@@ -65,7 +65,7 @@ public class Line implements Cloneable{
 		rawText =  s;
 	}
 	
-	public void BuildOtherBasics(Style style){
+	public void BuildExtras(Style style){
 		midTime = (startTime + endTime) >> 1;
 		duration = endTime - startTime;
 		dur = duration;
@@ -74,20 +74,22 @@ public class Line implements Cloneable{
 		styleRef = style;
 	}
 	
-	public void BuildPositions(Style style) {
-		
+	public Line clone(){
+		Line line  = null;
+		try {
+			line = (Line)super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		line.styleRef = styleRef.clone();  
+		line.syls = new ArrayList<Syl>( );
+		line.chars = new ArrayList<Char>( );
+		for(int i=0; i<syls.size(); i++) {
+			line.syls.add(syls.get(i).clone());
+		}
+		for(int i=0; i<chars.size(); i++) {
+			line.chars.add(chars.get(i).clone());
+		}
+		return line;
 	}
-	
-	public void BuildSizes(Style style) {
-		
-	}
-	
-	public void BuildSyls(Style style) {
-		
-	}
-	
-	public void BuildChars(Style style) {
-		
-	}
-	
 }

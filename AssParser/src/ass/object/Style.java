@@ -57,5 +57,13 @@ public class Style {
 		marginV = Integer.parseInt(items[21]);
 		encoding = items[22];
 	}
-	
+	public Style clone(){
+		Style style = null;
+		try {
+			style = (Style)super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return style;
+	}
 }

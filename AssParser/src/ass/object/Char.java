@@ -24,6 +24,20 @@ public class Char {
 	public String text;
 	
 	// reference info
+	public Style styleRef;
 	public Syl sylRef;
 	public Line lineRef;
+	
+	public Char clone(){
+		Char c = null;
+		try {
+			c = (Char)super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		c.styleRef = styleRef.clone();
+		c.sylRef = sylRef.clone();
+		c.lineRef = lineRef.clone();
+		return c;
+	}
 }

@@ -16,7 +16,6 @@ public class AssTime {
 		m = Integer.parseInt(items[1]);
 		s = Integer.parseInt(items[2]);
 		hs = Integer.parseInt(items[3]);
-		
 	}
 	public AssTime(int ms) {
 		int h  = (ms / 3600000) % 10;

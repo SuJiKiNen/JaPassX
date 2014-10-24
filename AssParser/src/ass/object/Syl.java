@@ -1,6 +1,6 @@
 package ass.object;
 
-public class Syl {
+public class Syl implements Cloneable{
 	// time info
 	public int startTime;
 	public int endTime;

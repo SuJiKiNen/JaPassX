@@ -1,6 +1,6 @@
 package ass.object;
 
-public class Char {
+public class Char implements Cloneable{
 	// time info
 	public int startTime; 
 	public int endTime;

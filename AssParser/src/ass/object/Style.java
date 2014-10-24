@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import util.AssColor;
 
-public class Style {
+public class Style implements Cloneable{
 	public String name;
 	public String fontName;
 	public int fontSize;

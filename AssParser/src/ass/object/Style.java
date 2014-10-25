@@ -66,4 +66,18 @@ public class Style implements Cloneable{
 		}
 		return style;
 	}
+	@Override
+	public String toString() {
+		return "Style [name=" + name + ", fontName=" + fontName + ", fontSize="
+				+ fontSize + ", color1=" + color1 + ", color2=" + color2
+				+ ", color3=" + color3 + ", color4=" + color4 + ", bold="
+				+ bold + ", italic=" + italic + ", underline=" + underline
+				+ ", strikeout=" + strikeout + ", scaleX=" + scaleX
+				+ ", scaleY=" + scaleY + ", spacing=" + spacing + ", angle="
+				+ angle + ", borderstyle=" + borderstyle + ", outline="
+				+ outline + ", shadow=" + shadow + ", align=" + align
+				+ ", marginL=" + marginL + ", marginR=" + marginR
+				+ ", marginV=" + marginV + ", encoding=" + encoding + "]";
+	}
+	
 }

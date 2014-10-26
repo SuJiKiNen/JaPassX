@@ -7,7 +7,6 @@ import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
 import java.util.Hashtable;
 import java.util.Map;
-
 import ass.object.Style;
 
 public class TextExtents {
@@ -58,6 +57,4 @@ public class TextExtents {
 	public float getLeading() {
 		return leading;
 	}
-	
-	
 }

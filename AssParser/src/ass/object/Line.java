@@ -42,7 +42,11 @@ public class Line implements Cloneable{
 	public String rawText;
 	public Style styleRef;
 	public int i;
-
+	
+	public int startFrame;
+	public int endFrame;
+	public int midFrame;
+	
 	ArrayList<Syl> syls;
 	ArrayList<Char> chars;
 	
@@ -70,6 +74,10 @@ public class Line implements Cloneable{
 		duration = endTime - startTime;
 		midTime = startTime + (duration>>1);
 		dur = duration;
+		startFrame = new AssTime(startTime).toFrame(frameRate);
+		endFrame  = new AssTime(endFrame).toFrame(frameRate);
+		midFrame = new AssTime(midTime).toFrame(frameRate);
+		
 		i = lineCount;
 		styleRef = lineStyle;
 		TextExtents textExtents = new TextExtents(text, lineStyle);
@@ -117,6 +125,8 @@ public class Line implements Cloneable{
 			middle = bottom - height / 2.0f;
 			top = bottom - height;
 		}
+		x = textExtents.getAscent();
+		y = middle;	
 	}
 	
 	public Line clone(){

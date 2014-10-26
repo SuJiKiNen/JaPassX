@@ -60,7 +60,7 @@ public class AssParser {
 				
 				if(curLine.startsWith("Dialogue")) {
 					Line line = new Line(curLine);
-					line.buildExtras(styles.get(line.style),frameRate);
+					line.buildExtras(styles.get(line.style),frameRate,meta);
 					lines.add(line);
 				}
 				

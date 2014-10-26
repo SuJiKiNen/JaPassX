@@ -65,13 +65,58 @@ public class Line implements Cloneable{
 		rawText =  s;
 	}
 	
-	public void BuildExtras(Style style){
-		midTime = (startTime + endTime) >> 1;
+	public void buildExtras(Style lineStyle,float frameRate,Meta meta){
 		duration = endTime - startTime;
+		midTime = startTime + (duration>>1);
 		dur = duration;
-		text = AssTag.clean(kText);
+		text = AssTag.strip(kText);
 		i = lineCount;
-		styleRef = style;
+		styleRef = lineStyle;
+		TextExtents textExtents = new TextExtents(text, lineStyle);
+		width = textExtents.getWidth();
+		height = textExtents.getHeight();
+	
+		int actualMarginL = this.marginL > 0 ? this.marginL : lineStyle.marginL;
+		int actualMarginR = this.marginR > 0 ? this.marginR : lineStyle.marginR;
+		int actualMarginV = this.marginV > 0 ? this.marginV : lineStyle.marginV;
+		
+		// alignment 1,4,7
+		if( (lineStyle.align-1)%3 == 0 ){
+			left = (float)actualMarginL;
+			right = left + width;
+			center = left + width / 2.0f;
+		}
+		
+		// alignment 2,5,8 
+		if( (lineStyle.align-2)%3 ==0 ) {
+			left = (meta.width - actualMarginL - actualMarginR - width) / 2 + actualMarginL;
+			right = left + width;
+			center = left + width / 2.0f;
+		}
+		
+		//alignment 3,6,9
+		if( lineStyle.align%3==0 ) {
+			left = meta.width - actualMarginR - width;
+			right = left + width / 2;
+			center = left  + width / 2.0f;
+		}
+		
+		// process top bottom middle
+		if(lineStyle.align >=1 && lineStyle.align <=3) {
+			bottom = meta.height - actualMarginV;
+			middle = bottom -height / 2.0f;
+			top = bottom - height;
+		}
+		if(lineStyle.align >=4 && lineStyle.align <=6) {
+			bottom = ( meta.height - height ) / 2.0f;
+			middle = bottom - height / 2.0f;
+			top = bottom - height;
+		}
+		if(lineStyle.align >=7 && lineStyle.align <=9) {
+			bottom = actualMarginV + height;
+			middle = bottom - height / 2.0f;
+			top = bottom - height;
+		}
 	}
 	
 	public Line clone(){

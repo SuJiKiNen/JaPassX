@@ -63,13 +63,13 @@ public class Line implements Cloneable{
 		effect = items[8];
 		kText = items[9];
 		rawText =  s;
+		text = AssTag.strip(kText);
 	}
 	
 	public void buildExtras(Style lineStyle,float frameRate,Meta meta){
 		duration = endTime - startTime;
 		midTime = startTime + (duration>>1);
 		dur = duration;
-		text = AssTag.strip(kText);
 		i = lineCount;
 		styleRef = lineStyle;
 		TextExtents textExtents = new TextExtents(text, lineStyle);

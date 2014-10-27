@@ -60,7 +60,7 @@ public class AssParser {
 				
 				if(curLine.startsWith("Dialogue")) {
 					Line line = new Line(curLine);
-					line.buildExtras(styles.get(line.style),frameRate,meta);
+					line.createExtras(styles.get(line.style),frameRate,meta);
 					lines.add(line);
 				}
 				
@@ -88,9 +88,8 @@ public class AssParser {
 	
 	public static void main(String [] args){
 		AssParser assParser = new AssParser();
-		Ass ass = assParser.parseFile("C:\\Users\\LuiShenGa\\Desktop\\Untitled.ass");
+		Ass ass = assParser.parseFile("C:\\Users\\LuiShenGa\\Desktop\\LiSA - oath sign.ass");
 		System.out.println(ass.meta.width);
 		System.out.println(ass.meta.height);
 	}
-	
 }

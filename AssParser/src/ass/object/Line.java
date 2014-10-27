@@ -1,11 +1,12 @@
 package ass.object;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import util.AssTag;
 import util.AssTime;
+import util.Regex;
 import util.TextExtents;
-
 
 public class Line implements Cloneable{
 	static int lineCount;
@@ -46,6 +47,7 @@ public class Line implements Cloneable{
 	public int startFrame;
 	public int endFrame;
 	public int midFrame;
+	public float frameRate;
 	
 	ArrayList<Syl> syls;
 	ArrayList<Char> chars;
@@ -70,7 +72,8 @@ public class Line implements Cloneable{
 		text = AssTag.strip(kText);
 	}
 	
-	public void buildExtras(Style lineStyle,float frameRate,Meta meta){
+	public void createExtras(Style lineStyle,float frameRate,Meta meta){
+		this.frameRate = frameRate;
 		duration = endTime - startTime;
 		midTime = startTime + (duration>>1);
 		dur = duration;
@@ -127,8 +130,61 @@ public class Line implements Cloneable{
 		}
 		x = textExtents.getAscent();
 		y = middle;	
+		createSyls();
 	}
 	
+	public void createSyls( ){
+		Pattern p = Pattern.compile("\\{(.*?)(\\\\[kK][of]?)(\\d+)(.*?)\\}([^{]*)");
+		Matcher matcher = p.matcher(kText);
+		int sylCount = 0;
+		int start2Syl = 0;
+		float currentX = 0.0f;
+		while (matcher.find()) {
+			Syl syl = new Syl();
+			++sylCount;
+			syl.kTag = matcher.group(2);
+			syl.duration = Integer.parseInt(matcher.group(3))*10;
+			syl.dur = syl.duration;
+			syl.sText = matcher.group(5);
+			syl.startTime = start2Syl;
+			endTime = startTime + duration;
+			syl.syl2End = dur - endTime;
+			
+			String preSpaceReg = "^([\\s"+Regex.UNICODE_SPACES+"]*)";
+			String PostSpaceReg = "([\\s"+Regex.UNICODE_SPACES+"]*)$";
+			String textReg = "(.*?)";
+			Pattern headTailSpacePattern = Pattern.compile(preSpaceReg + textReg + PostSpaceReg);
+			Matcher headTailSpaceMatcher = headTailSpacePattern.matcher(syl.sText);
+			if(headTailSpaceMatcher.find()) {
+				syl.preSpace = headTailSpaceMatcher.group(1);
+				syl.text = headTailSpaceMatcher.group(2);
+				syl.postSpace = headTailSpaceMatcher.group(3);
+			}else {
+				
+			}
+			TextExtents textExtents = new TextExtents(syl.preSpace, styleRef);
+			currentX = currentX + textExtents.getWidth();
+			syl.left = currentX;
+			
+			textExtents = new TextExtents(syl.text, styleRef);
+			syl.height = textExtents.getHeight();
+			syl.width = textExtents.getWidth();
+			
+			textExtents = new TextExtents(syl.postSpace, styleRef);
+			currentX = currentX + textExtents.getWidth();
+			
+			syl.right = syl.left + syl.width;
+			syl.top = top;
+			syl.bottom = bottom;
+			syl.center = syl.left + syl.width/2.0f;
+			syl.middle = syl.top + syl.height/2.0f;
+			syl.i = sylCount;
+			syl.li = i;
+			syl.styleRef = styleRef.clone();
+			syls.add(syl);
+		}
+	}
+
 	public Line clone(){
 		Line line  = null;
 		try {

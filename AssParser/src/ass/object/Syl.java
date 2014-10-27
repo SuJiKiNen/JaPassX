@@ -1,11 +1,15 @@
 package ass.object;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Syl implements Cloneable{
 	// time info
 	public int startTime;
 	public int endTime;
 	public int midTime;
 	public int duration;
+	public int dur;
 	public int start2Syl;
 	public int syl2End;
 
@@ -22,11 +26,16 @@ public class Syl implements Cloneable{
 	// text and size info
 	public float height;
 	public float width;
-	public String kText;
+	public String sText;
+	public String preSpace;
+	public String postSpace;
 	public String text;
+	public String kTag;
 	
 	public int i; 
+	public int li;
 	public Style styleRef;
+
 	public Syl clone(){
 		Syl syl = null;
 		try {

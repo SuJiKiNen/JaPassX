@@ -1,6 +1,5 @@
 package ass.object;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -41,7 +40,7 @@ public class AssParser {
 		
 		String curLine = null;
 		try {
-			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filename)));
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filename),"UTF-8"));
 			while ( (curLine = bufferedReader.readLine()) !=null ) {
 				
 				if (curLine.startsWith("PlayResX")) {
@@ -91,5 +90,8 @@ public class AssParser {
 		Ass ass = assParser.parseFile("C:\\Users\\LuiShenGa\\Desktop\\LiSA - oath sign.ass");
 		System.out.println(ass.meta.width);
 		System.out.println(ass.meta.height);
+		ArrayList<Line> lines = ass.getLines();
+		System.out.println(lines.get(0).text);
+		System.out.println(lines.get(0).text.length());
 	}
 }

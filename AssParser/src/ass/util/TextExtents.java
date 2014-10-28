@@ -1,12 +1,9 @@
-package util;
+package ass.util;
 
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
-import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
-import java.util.Hashtable;
-import java.util.Map;
 import ass.object.Style;
 
 public class TextExtents {

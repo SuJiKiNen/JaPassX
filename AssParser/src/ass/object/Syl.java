@@ -1,8 +1,5 @@
 package ass.object;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Syl implements Cloneable{
 	// time info
 	public int startTime;
@@ -46,4 +43,5 @@ public class Syl implements Cloneable{
 		syl.styleRef = styleRef.clone();
 		return syl;
 	}
+	
 }

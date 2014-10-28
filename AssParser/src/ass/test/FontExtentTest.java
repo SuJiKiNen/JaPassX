@@ -1,7 +1,7 @@
 package ass.test;
-import util.TextExtents;
 import ass.object.Line;
 import ass.object.Style;
+import ass.util.TextExtents;
 
 public class FontExtentTest {
 

@@ -3,10 +3,11 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import util.AssTag;
-import util.AssTime;
-import util.Regex;
-import util.TextExtents;
+import ass.util.AssTag;
+import ass.util.AssTime;
+import ass.util.Regex;
+import ass.util.TextExtents;
+
 
 public class Line implements Cloneable{
 	static int lineCount;
@@ -134,6 +135,7 @@ public class Line implements Cloneable{
 	}
 	
 	public void createSyls( ){
+		syls = new ArrayList<Syl>();
 		Pattern p = Pattern.compile("\\{(.*?)(\\\\[kK][of]?)(\\d+)(.*?)\\}([^{]*)");
 		Matcher matcher = p.matcher(kText);
 		int sylCount = 0;

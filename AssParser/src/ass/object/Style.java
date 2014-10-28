@@ -2,7 +2,8 @@ package ass.object;
 
 import java.util.regex.Pattern;
 
-import util.AssColor;
+import ass.util.AssColor;
+
 
 public class Style implements Cloneable{
 	public String name;

@@ -1,6 +1,6 @@
 package ass.test;
 
-import util.AssTime;
+import ass.util.AssTime;
 
 public class AssTimeTest {
 

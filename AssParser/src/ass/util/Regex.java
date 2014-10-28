@@ -1,4 +1,4 @@
-package util;
+package ass.util;
 
 //https://github.com/twitter/twitter-text-java/blob/master/src/com/twitter/Regex.java
 public class Regex {

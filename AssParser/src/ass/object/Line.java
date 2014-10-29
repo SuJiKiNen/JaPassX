@@ -129,8 +129,8 @@ public class Line implements Cloneable{
 			middle = bottom - height / 2.0f;
 			top = bottom - height;
 		}
-		x = textExtents.getAscent();
-		y = middle;	
+		x = center;	
+		y = top+textExtents.getAscent();
 		createSyls();
 	}
 	

@@ -40,15 +40,16 @@ public class AssParser {
 		
 		String curLine = null;
 		try {
+			// https://github.com/processing/processing/blob/d0e696c69449483a3967c157b1042e06934637cb/core/methods/demo/PApplet.java#L4703
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filename),"UTF-8"));
 			while ( (curLine = bufferedReader.readLine()) !=null ) {
 				
 				if (curLine.startsWith("PlayResX")) {
-					meta.width = Float.parseFloat( curLine.substring(9) );
+					meta.width = Integer.parseInt( curLine.substring(10) );
 				}
 				
 				if(curLine.startsWith("PlayResY")) {
-					meta.height = Float.parseFloat( curLine.substring(9) );
+					meta.height = Integer.parseInt( curLine.substring(10) );
 				}
 				
 				if(curLine.startsWith("Style")) {
@@ -62,7 +63,6 @@ public class AssParser {
 					line.createExtras(styles.get(line.style),frameRate,meta);
 					lines.add(line);
 				}
-				
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

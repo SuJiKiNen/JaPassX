@@ -7,26 +7,27 @@ package ass.object;
 public class Meta implements Cloneable{
 	
 	/** The height. */
-	public float height;
+	public int height;
 	
 	/** The width. */
-	public float width;
-	
-	public float getHeight() {
+	public int width;
+
+	public int getHeight() {
 		return height;
 	}
-	
-	public void setHeight(float height) {
+
+	public void setHeight(int height) {
 		this.height = height;
 	}
-	
-	public float getWidth() {
+
+	public int getWidth() {
 		return width;
 	}
-	
-	public void setWidth(float width) {
+
+	public void setWidth(int width) {
 		this.width = width;
 	}
+
 	public Meta clone(){
 		Meta meta = null;
 		try {

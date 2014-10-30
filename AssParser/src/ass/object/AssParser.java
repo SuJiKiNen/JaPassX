@@ -9,31 +9,19 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class AssParser {
-	private float frameRate = 23.976f;
-	
-	/**
-	 * Instantiates a new ass parser,and the default frame rate is 23.976.
-	 */
-	public AssParser(){
-		
-	}
-	
-	/**
-	 * Instantiates a new ass parser, use specific frame rate to create a parser.
-	 * @param frameRate
-	 *           
-	 */
-	public AssParser(float frameRate){
-		this.frameRate = frameRate;
-	}
-	
 	/**
 	 * Parses the ass file,the filename can be absolute path,or you can drop the ass file 
 	 * to processing data folder,then use dataPath to get the absolute ass file
 	 * @param filename
 	 * @return the ass
 	 */
-	public Ass parseFile(String filename){
+	public static Ass parseFile(String filename,float...frameRateArray){
+		float frameRate = 23.976f;
+		if(frameRateArray.length==1) {
+			frameRate = frameRateArray[0];
+		}
+		System.out.println("frame rate is "+frameRate);
+		System.out.println();
 		Meta meta = new Meta();
 		Hashtable<String,Style> styles = new Hashtable<String,Style>();
 		ArrayList<Line> lines = new ArrayList<Line>();
@@ -77,17 +65,8 @@ public class AssParser {
 		return ass;
 	}
 
-	public float getFrameRate() {
-		return frameRate;
-	}
-
-	public void setFrameRate(float frameRate) {
-		this.frameRate = frameRate;
-	}
-	
 	public static void main(String [] args){
-		AssParser assParser = new AssParser();
-		Ass ass = assParser.parseFile("C:\\Users\\LuiShenGa\\Desktop\\LiSA - oath sign.ass");
+		Ass ass = AssParser.parseFile("C:\\Users\\LuiShenGa\\Desktop\\LiSA - oath sign.ass",30);
 		System.out.println(ass.meta.width);
 		System.out.println(ass.meta.height);
 		ArrayList<Line> lines = ass.getLines();

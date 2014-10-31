@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -20,12 +21,15 @@ public class AssParser {
 		if(frameRateArray.length==1) {
 			frameRate = frameRateArray[0];
 		}
-		System.out.println("frame rate is "+frameRate);
-		System.out.println();
+		if(frameRateArray.length>1) {
+			throw new InvalidParameterException("First parameter is ass file path,seconde is frame rate(optional).");
+		}
+		//System.out.println("frame rate is "+frameRate);
+		//System.out.println();
 		Meta meta = new Meta();
 		Hashtable<String,Style> styles = new Hashtable<String,Style>();
 		ArrayList<Line> lines = new ArrayList<Line>();
-		
+		meta.frameRate = frameRate;
 		String curLine = null;
 		try {
 			// https://github.com/processing/processing/blob/d0e696c69449483a3967c157b1042e06934637cb/core/methods/demo/PApplet.java#L4703
@@ -43,12 +47,12 @@ public class AssParser {
 				if(curLine.startsWith("Style")) {
 					Style style = new Style(curLine);
 					styles.put(style.name, style);
-					System.out.println(style.toString());
+					//System.out.println(style.toString());
 				}
 				
 				if(curLine.startsWith("Dialogue")) {
-					Line line = new Line(curLine);
-					line.createExtras(styles.get(line.style),frameRate,meta);
+					Line line = new Line(curLine,frameRate);
+					line.createExtras(styles.get(line.style),meta);
 					lines.add(line);
 				}
 			}
@@ -69,8 +73,8 @@ public class AssParser {
 		Ass ass = AssParser.parseFile("C:\\Users\\LuiShenGa\\Desktop\\LiSA - oath sign.ass",30);
 		System.out.println(ass.meta.width);
 		System.out.println(ass.meta.height);
-		ArrayList<Line> lines = ass.getLines();
-		System.out.println(lines.get(0).text);
-		System.out.println(lines.get(0).text.length());
+		System.out.println(ass.meta.frameRate);
+		Line[] lines = ass.getLines();
+		System.out.println(lines[1].text);
 	}
 }

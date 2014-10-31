@@ -5,9 +5,9 @@ import java.util.Hashtable;
 import java.util.Enumeration;;
 
 public class Ass implements Cloneable{
-	Meta meta;
-	Hashtable<String,Style> styles;
-	ArrayList<Line> lines;
+	public Meta meta;
+	public Hashtable<String,Style> styles;
+	public ArrayList<Line> lines;
 	
 	public Ass(){
 		meta = new Meta();
@@ -31,8 +31,8 @@ public class Ass implements Cloneable{
 		this.styles = styles;
 	}
 	
-	public ArrayList<Line> getLines() {
-		return lines;
+	public Line[] getLines() {
+		return lines.toArray(new Line[ lines.size() ]);
 	}
 	
 	public void setLines(ArrayList<Line> lines) {

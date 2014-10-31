@@ -11,6 +11,8 @@ public class Meta implements Cloneable{
 	
 	/** The width. */
 	public int width;
+	
+	public float frameRate;
 
 	public int getHeight() {
 		return height;

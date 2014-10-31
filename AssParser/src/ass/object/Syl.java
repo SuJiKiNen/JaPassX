@@ -43,5 +43,11 @@ public class Syl implements Cloneable{
 		syl.styleRef = styleRef.clone();
 		return syl;
 	}
+
+	@Override
+	public String toString() {
+		return "Syl [startTime=" + startTime + ", endTime=" + endTime
+				+ ", midTime=" + midTime + ", text=" + text + ", i=" + i + "]";
+	}
 	
 }

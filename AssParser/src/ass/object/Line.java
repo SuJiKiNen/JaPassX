@@ -39,29 +39,26 @@ public class Line implements Cloneable{
 	public float middle;
 	public float x;
 	public float y;
+	public float frameRate;
 
 	public String text;
 	public String rawText;
 	public Style styleRef;
 	public int i;
 	
-	public int startFrame;
-	public int endFrame;
-	public int midFrame;
-	public float frameRate;
+	public ArrayList<Syl> syls;
+	public ArrayList<Char> chars;
 	
-	ArrayList<Syl> syls;
-	ArrayList<Char> chars;
-	
-	public Line(String s) {
+	public Line(String s,float frameRate) {
 		// add check
+		this.frameRate = frameRate;
 		++lineCount;
 		s = s.substring(10);
 		Pattern p = Pattern.compile(",");
 		String[] items = p.split(s);
 		layer = Integer.parseInt(items[0]);
-		startTime = new AssTime(items[1]).toMillis();
-		endTime = new AssTime(items[2]).toMillis();
+		startTime = new AssTime(items[1]).toFrame(frameRate);
+		endTime = new AssTime(items[2]).toFrame(frameRate);
 		style = items[3];
 		actor = items[4];
 		marginL = Integer.parseInt(items[5]);
@@ -73,15 +70,10 @@ public class Line implements Cloneable{
 		text = AssTag.strip(kText);
 	}
 	
-	public void createExtras(Style lineStyle,float frameRate,Meta meta){
-		this.frameRate = frameRate;
+	public void createExtras(Style lineStyle,Meta meta){
 		duration = endTime - startTime;
 		midTime = startTime + (duration>>1);
 		dur = duration;
-		startFrame = new AssTime(startTime).toFrame(frameRate);
-		endFrame  = new AssTime(endFrame).toFrame(frameRate);
-		midFrame = new AssTime(midTime).toFrame(frameRate);
-		
 		i = lineCount;
 		styleRef = lineStyle;
 		TextExtents textExtents = new TextExtents(text, lineStyle);
@@ -140,12 +132,12 @@ public class Line implements Cloneable{
 		Matcher matcher = p.matcher(kText);
 		int sylCount = 0;
 		int start2Syl = 0;
-		float currentX = 0.0f;
+		float currentX = this.left;
 		while (matcher.find()) {
 			Syl syl = new Syl();
 			++sylCount;
 			syl.kTag = matcher.group(2);
-			syl.duration = Integer.parseInt(matcher.group(3))*10;
+			syl.duration = new AssTime( Integer.parseInt(matcher.group(3))*10 ).toFrame(frameRate);
 			syl.dur = syl.duration;
 			syl.sText = matcher.group(5);
 			syl.startTime = start2Syl;
@@ -171,6 +163,7 @@ public class Line implements Cloneable{
 			textExtents = new TextExtents(syl.text, styleRef);
 			syl.height = textExtents.getHeight();
 			syl.width = textExtents.getWidth();
+			currentX = currentX + syl.width;
 			
 			textExtents = new TextExtents(syl.postSpace, styleRef);
 			currentX = currentX + textExtents.getWidth();
@@ -185,6 +178,10 @@ public class Line implements Cloneable{
 			syl.styleRef = styleRef.clone();
 			syls.add(syl);
 		}
+	}
+	
+	public void createChars(){
+		
 	}
 
 	public Line clone(){
@@ -205,4 +202,13 @@ public class Line implements Cloneable{
 		}
 		return line;
 	}
+
+	public  Syl[] getSyls() {
+		return syls.toArray(new Syl[ syls.size() ]);
+	}
+
+	public Char[] getChars() {
+		return chars.toArray(new Char[ chars.size() ]);
+	}
+
 }

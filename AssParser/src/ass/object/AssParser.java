@@ -16,14 +16,10 @@ public class AssParser {
 	 * @param filename
 	 * @return the ass
 	 */
-	public static Ass parseFile(String filename,float...frameRateArray){
-		float frameRate = 23.976f;
-		if(frameRateArray.length==1) {
-			frameRate = frameRateArray[0];
-		}
-		if(frameRateArray.length>1) {
-			throw new InvalidParameterException("First parameter is ass file path,seconde is frame rate(optional).");
-		}
+	public static Ass parseFile(String filename) {
+		return parseFile(filename, 23.976f);
+	}
+	public static Ass parseFile(String filename,float frameRate){
 		//System.out.println("frame rate is "+frameRate);
 		//System.out.println();
 		Meta meta = new Meta();

@@ -10,8 +10,8 @@ public class FontExtentTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Style style = new Style("Style: Default2,仿宋,30,&H0BFFFFFF,&H000000FF,&H00000000,&H00000000,0,0,0,0,100,100,0,0,1,0,0,5,0,0,10,1");
-		Line line = new Line("Dialogue: 0,0:00:00.00,0:00:05.00,Default2,,0,0,0,karaoke,舸123",23.976f);
+		Style style = new Style("Style: JP,宋体,50,&HFFFF0000,&H000000FF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,4,0,2,0,0,32,1");
+		Line line = new Line("Dialogue: 0,0:00:00.00,0:00:05.99,JP,,0,0,0,fx,繰り返す世界 何度手を伸ばしたら",23.976f);
 		
 		// size infomation seems wrong
 		TextExtents textExtents = new TextExtents(line.text, style);

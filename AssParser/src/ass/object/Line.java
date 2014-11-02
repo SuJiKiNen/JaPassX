@@ -62,7 +62,7 @@ public class Line implements Cloneable{
 		style = items[3];
 		actor = items[4];
 		marginL = Integer.parseInt(items[5]);
-		marginR = Integer.parseInt(items[6]);
+		marginR = Integer.parseInt(items[6]);	
 		marginV = Integer.parseInt(items[7]);
 		effect = items[8];
 		kText = items[9];
@@ -181,7 +181,32 @@ public class Line implements Cloneable{
 	}
 	
 	public void createChars(){
-		
+		for(int i=0; i<syls.size(); i++) {
+			Syl syl = syls.get(i);
+			float curX = syl.left;
+			for(int j=0; j<syl.text.length(); j++) {
+				Char c = new Char();
+				c.startTime = syl.start2Syl;
+				c.endTime = syl.endTime;
+				c.midTime = syl.midTime;
+				c.duration = c.endTime - startTime;
+				c.dur = c.duration;
+				c.text = String.valueOf( syl.text.charAt(j) );
+				TextExtents textExtents = new TextExtents(c.text, syl.styleRef);
+				c.width = textExtents.getWidth();
+				c.height = textExtents.getHeight();
+				c.top = syl.top;
+				c.bottom = syl.bottom;
+				c.left = curX;
+				c.right = c.left + c.width;
+				curX = c.right;
+				c.center = c.left + c.width/2.0f;
+				c.middle = c.top + c.height/2.0f;
+				c.styleRef = syl.styleRef.clone();
+				c.sylRef = syl.clone();
+				chars.add(c);
+			}
+		}
 	}
 
 	public Line clone(){

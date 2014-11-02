@@ -56,7 +56,6 @@ public class TextExtents {
 		descent = fontMetrics.getDescent();
 		leading = fontMetrics.getLeading();
 		*/
-		
 	}
 
 	public float getHeight() {

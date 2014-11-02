@@ -16,6 +16,7 @@ public class FontExtentTest {
 		// size infomation seems wrong
 		TextExtents textExtents = new TextExtents(line.text, style);
 		System.out.println("text is "+line.text);
+		System.out.println(line.text.length());
 		System.out.println("size is "+style.fontSize);
 		System.out.println("height is "+textExtents.getHeight());
 		System.out.println("width is "+textExtents.getWidth());

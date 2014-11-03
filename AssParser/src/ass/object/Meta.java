@@ -13,6 +13,23 @@ public class Meta implements Cloneable{
 	public int width;
 	
 	public float frameRate;
+	public Meta(int width,int height,float frameRate){
+		this.width = width;
+		this.height = height;
+		this.frameRate = frameRate;
+	}
+	
+	public Meta(int width,int height) {
+		this.width = width;
+		this.height = height;
+		this.frameRate = 23.976f;
+	}
+	
+	public Meta(){
+		this.width = 1280;
+		this.height = 720;
+		this.frameRate = 23.976f;
+	}
 
 	public int getHeight() {
 		return height;

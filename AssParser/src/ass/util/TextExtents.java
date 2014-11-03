@@ -48,7 +48,7 @@ public class TextExtents {
 		FontRenderContext fontRenderContext = graphics2d.getFontRenderContext();
 		FontMetrics fontMetrics = graphics2d.getFontMetrics();		
 		LineMetrics lineMetrics = font.getLineMetrics(text, fontRenderContext);
-		width = (float)fontMetrics.stringWidth(text)/(float)SCALE;
+		width = (float)( fontMetrics.stringWidth(text) +style.spacing*text.length()*SCALE)/(float)SCALE;
 		System.out.println(fontMetrics.stringWidth(text));
 		ascent = lineMetrics.getAscent()/(float)SCALE;
 		descent = lineMetrics.getDescent()/(float)SCALE;

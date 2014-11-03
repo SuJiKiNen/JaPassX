@@ -10,12 +10,12 @@ import java.awt.image.BufferedImage;
 import ass.object.Style;
 
 public class TextExtents {
+	private final static int SCALE=64;
 	private float height;
 	private float width;
 	private float ascent;
 	private float descent;
 	private float leading;
-	 
 	public TextExtents(String text,Style style) {
 		/* text extents get wrong when mixed plain with others
 		int fontStyle = Font.PLAIN;
@@ -36,7 +36,7 @@ public class TextExtents {
 		//https://github.com/processing/processing/blob/bf8ca5c0f2072e25d89a733cef24358500fb62c0/core/src/processing/core/PFont.java#L893
 		//https://github.com/processing/processing/blob/bf8ca5c0f2072e25d89a733cef24358500fb62c0/core/src/processing/core/PApplet.java#L6677
 		//http://processing.org/reference/javadoc/core/processing/core/PFont.html
-		Font font = new Font(style.fontName, Font.PLAIN, style.fontSize);
+		Font font = new Font(style.fontName, Font.PLAIN, style.fontSize*SCALE);
 		//System.out.println("AssFont family is "+style.fontName);
 		//System.out.println("logic name "+font.getName());
 		//System.out.println("font face name"+font.getFontName());
@@ -48,11 +48,12 @@ public class TextExtents {
 		FontRenderContext fontRenderContext = graphics2d.getFontRenderContext();
 		FontMetrics fontMetrics = graphics2d.getFontMetrics();		
 		LineMetrics lineMetrics = font.getLineMetrics(text, fontRenderContext);
-		width = (float)fontMetrics.stringWidth(text);
-		ascent = lineMetrics.getAscent();
-		descent = lineMetrics.getDescent();
-		leading = lineMetrics.getLeading();
-		height = ascent + descent;
+		width = (float)fontMetrics.stringWidth(text)/(float)SCALE;
+		System.out.println(fontMetrics.stringWidth(text));
+		ascent = lineMetrics.getAscent()/(float)SCALE;
+		descent = lineMetrics.getDescent()/(float)SCALE;
+		leading = lineMetrics.getLeading()/(float)SCALE;
+		height = ( lineMetrics.getAscent() + lineMetrics.getDescent() )/(float)SCALE;
 		/*
 		FontMetrics fontMetrics = graphics2d.getFontMetrics(font);
 		height = fontMetrics.getHeight();

@@ -124,11 +124,11 @@ public class Line implements Cloneable{
 		x = center;	
 		y = top+textExtents.getAscent();
 		createSyls();
+		createChars();
 	}
-	
 	public void createSyls( ){
 		syls = new ArrayList<Syl>();
-		Pattern p = Pattern.compile("\\{(.*?)(\\\\[kK][of]?)(\\d+)(.*?)\\}([^{]*)");
+		Pattern p = Pattern.compile("\\{(.*?)\\\\([kK][of]?)(\\d+)(.*?)\\}([^{]*)");
 		Matcher matcher = p.matcher(kText);
 		int sylCount = 0;
 		int start2Syl = 0;
@@ -137,12 +137,14 @@ public class Line implements Cloneable{
 			Syl syl = new Syl();
 			++sylCount;
 			syl.kTag = matcher.group(2);
-			syl.duration = new AssTime( Integer.parseInt(matcher.group(3))*10 ).toFrame(frameRate);
+			syl.duration = new AssTime( Integer.parseInt(matcher.group(3))*10 ).toMillis();
 			syl.dur = syl.duration;
 			syl.sText = matcher.group(5);
 			syl.startTime = start2Syl+this.startTime;
 			syl.endTime = syl.startTime + syl.dur;
 			syl.syl2End = this.dur - syl.endTime;
+			syl.start2Syl = start2Syl;
+			start2Syl+=syl.dur;
 			
 			String preSpaceReg = "^([\\s"+Regex.UNICODE_SPACES+"]*)";
 			String PostSpaceReg = "([\\s"+Regex.UNICODE_SPACES+"]*)$";
@@ -181,6 +183,7 @@ public class Line implements Cloneable{
 	}
 	
 	public void createChars(){
+		chars = new ArrayList<Char>();
 		for(int i=0; i<syls.size(); i++) {
 			Syl syl = syls.get(i);
 			float curX = syl.left;

@@ -18,10 +18,10 @@ public class AssTime {
 		hs = Integer.parseInt(items[3]);
 	}
 	public AssTime(int ms) {
-		int h  = (ms / 3600000) % 10;
-		int m  = (ms % 3600000) / 60000;
-		int s  = (ms % 60000) / 1000;
-		int hs = (ms % 1000) / 10;
+		h  = (ms / 3600000) % 10;
+		m  = (ms % 3600000) / 60000;
+		s  = (ms % 60000) / 1000;
+		hs = (ms % 1000) / 10;
 	}
 	public int toMillis(){
 		int ms = hs * 10 + s * 1000 + m * 60000 + h * 3600000;

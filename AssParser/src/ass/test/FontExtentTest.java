@@ -24,8 +24,9 @@ public class FontExtentTest {
 		System.out.println("ascent is "+textExtents.getAscent());
 		System.out.println("descent is "+textExtents.getDescent());
 		System.out.println("leading is "+textExtents.getLeading());
+		System.out.println(line.startTime);
 		for(int i=0; i<line.syls.size(); i++) {
-			System.out.println(i+" "+line.syls.get(i).right);
+			System.out.println(i+" "+line.syls.get(i).startTime);
 		}
 	}
 }

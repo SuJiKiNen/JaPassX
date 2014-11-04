@@ -140,9 +140,9 @@ public class Line implements Cloneable{
 			syl.duration = new AssTime( Integer.parseInt(matcher.group(3))*10 ).toFrame(frameRate);
 			syl.dur = syl.duration;
 			syl.sText = matcher.group(5);
-			syl.startTime = start2Syl;
-			endTime = startTime + duration;
-			syl.syl2End = dur - endTime;
+			syl.startTime = start2Syl+this.startTime;
+			syl.endTime = syl.startTime + syl.dur;
+			syl.syl2End = this.dur - syl.endTime;
 			
 			String preSpaceReg = "^([\\s"+Regex.UNICODE_SPACES+"]*)";
 			String PostSpaceReg = "([\\s"+Regex.UNICODE_SPACES+"]*)$";

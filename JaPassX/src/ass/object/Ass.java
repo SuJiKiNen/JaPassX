@@ -38,6 +38,12 @@ public class Ass implements Cloneable{
 	public void setLines(ArrayList<Line> lines) {
 		this.lines = lines;
 	}
+	public Line getLineByFrame(int frame) {
+		// to do 
+		return lines.get(0);
+	}
+	
+	
 	public Ass clone(){
 		Ass ass = null;
 		try {

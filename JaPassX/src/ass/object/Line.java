@@ -46,34 +46,43 @@ public class Line implements Cloneable{
 	public Style styleRef;
 	public int i;
 	
+	public Time time;
 	public ArrayList<Syl> syls;
 	public ArrayList<Char> chars;
 	
 	public Line(String s,float frameRate) {
 		// add check
 		this.frameRate = frameRate;
-		++lineCount;
-		s = s.substring(10);
-		Pattern p = Pattern.compile(",");
-		String[] items = p.split(s);
-		layer = Integer.parseInt(items[0]);
-		startTime = new AssTime(items[1]).toFrame(frameRate);
-		endTime = new AssTime(items[2]).toFrame(frameRate);
-		style = items[3];
-		actor = items[4];
-		marginL = Integer.parseInt(items[5]);
-		marginR = Integer.parseInt(items[6]);	
-		marginV = Integer.parseInt(items[7]);
-		effect = items[8];
-		kText = items[9];
-		rawText =  s;
-		text = AssTag.strip(kText);
+		++this.lineCount;
+		System.out.println(s);
+		System.out.println(lineCount);
+		Pattern pattern = Pattern.compile("^Dialogue:\\s*(\\d*?),(\\d:\\d\\d:\\d\\d\\.\\d\\d),(\\d:\\d\\d:\\d\\d\\.\\d\\d),(.*?),(.*?),(\\d*?),(\\d*?),(\\d*?),(.*?),(.*)");
+		Matcher m = pattern.matcher(s);
+		boolean b = m.matches();
+		this.layer = Integer.parseInt( m.group(1) );
+		this.startTime = new AssTime( m.group(2) ).toFrame(frameRate);
+		this.endTime = new AssTime( m.group(3) ).toFrame(frameRate);
+		this.style = m.group(4);
+		this.actor = m.group(5);
+		this.marginL = Integer.parseInt( m.group(6) );
+		this.marginR = Integer.parseInt( m.group(7) );	
+		this.marginV = Integer.parseInt( m.group(8) );
+		this.effect = m.group(9);
+		this.kText = m.group(10);
+		this.rawText =  s;
+		this.text = AssTag.strip(kText);
 	}
 	
 	public void createExtras(Style lineStyle,Meta meta){
 		duration = endTime - startTime;
 		midTime = startTime + (duration>>1);
 		dur = duration;
+		
+		time = new Time();
+		time.start = startTime;
+		time.mid = midTime;
+		time.end = endTime;
+		
 		i = lineCount;
 		styleRef = lineStyle;
 		TextExtents textExtents = new TextExtents(text, lineStyle);
@@ -137,7 +146,7 @@ public class Line implements Cloneable{
 			Syl syl = new Syl();
 			++sylCount;
 			syl.kTag = matcher.group(2);
-			syl.duration = new AssTime( Integer.parseInt(matcher.group(3))*10 ).toMillis();
+			syl.duration = new AssTime( Integer.parseInt(matcher.group(3))*10 ).toFrame(frameRate);
 			syl.dur = syl.duration;
 			syl.sText = matcher.group(5);
 			syl.startTime = start2Syl+this.startTime;
@@ -219,6 +228,7 @@ public class Line implements Cloneable{
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
+		line.time = time.clone();
 		line.styleRef = styleRef.clone();  
 		line.syls = new ArrayList<Syl>( );
 		line.chars = new ArrayList<Char>( );

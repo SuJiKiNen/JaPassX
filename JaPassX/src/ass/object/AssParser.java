@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -20,8 +19,7 @@ public class AssParser {
 		return parseFile(filename, 23.976f);
 	}
 	public static Ass parseFile(String filename,float frameRate){
-		//System.out.println("frame rate is "+frameRate);
-		//System.out.println();
+
 		Meta meta = new Meta();
 		Hashtable<String,Style> styles = new Hashtable<String,Style>();
 		ArrayList<Line> lines = new ArrayList<Line>();
@@ -43,7 +41,6 @@ public class AssParser {
 				if(curLine.startsWith("Style")) {
 					Style style = new Style(curLine);
 					styles.put(style.name, style);
-					//System.out.println(style.toString());
 				}
 				
 				if(curLine.startsWith("Dialogue")) {
@@ -64,13 +61,7 @@ public class AssParser {
 		ass.setLines(lines);
 		return ass;
 	}
-
-	public static void main(String [] args){
-		Ass ass = AssParser.parseFile("C:\\Users\\LuiShenGa\\Desktop\\LiSA - oath sign.ass",30);
-		System.out.println(ass.meta.width);
-		System.out.println(ass.meta.height);
-		System.out.println(ass.meta.frameRate);
-		Line[] lines = ass.getLines();
-		System.out.println(lines[1].text);
+	public static void main(String [] args) {
+		Ass ass = AssParser.parseFile("G:\\FXWorks\\idolm\\idolm-furigana - 4processing.ass");
 	}
 }

@@ -2,12 +2,12 @@ package ass.util;
 
 import java.util.regex.Pattern;
 
-public class AssTime {
+public class ASSTime {
 	public int h;
 	public int m;
 	public int s;
 	public int hs;
-	public AssTime(String format) {
+	public ASSTime(String format) {
 		// to do add check
 		format = format.replace(".", ":");
 		Pattern p = Pattern.compile(":");
@@ -17,7 +17,7 @@ public class AssTime {
 		s = Integer.parseInt(items[2]);
 		hs = Integer.parseInt(items[3]);
 	}
-	public AssTime(int ms) {
+	public ASSTime(int ms) {
 		h  = (ms / 3600000) % 10;
 		m  = (ms % 3600000) / 60000;
 		s  = (ms % 60000) / 1000;

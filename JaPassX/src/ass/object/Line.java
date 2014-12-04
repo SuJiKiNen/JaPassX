@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ass.util.AssTag;
-import ass.util.AssTime;
+import ass.util.ASSTag;
+import ass.util.ASSTime;
 import ass.util.Regex;
 import ass.util.TextExtents;
 
@@ -60,8 +60,8 @@ public class Line implements Cloneable{
 		Matcher m = pattern.matcher(s);
 		boolean b = m.matches();
 		this.layer = Integer.parseInt( m.group(1) );
-		this.startTime = new AssTime( m.group(2) ).toFrame(frameRate);
-		this.endTime = new AssTime( m.group(3) ).toFrame(frameRate);
+		this.startTime = new ASSTime( m.group(2) ).toFrame(frameRate);
+		this.endTime = new ASSTime( m.group(3) ).toFrame(frameRate);
 		this.style = m.group(4);
 		this.actor = m.group(5);
 		this.marginL = Integer.parseInt( m.group(6) );
@@ -70,7 +70,7 @@ public class Line implements Cloneable{
 		this.effect = m.group(9);
 		this.kText = m.group(10);
 		this.rawText =  s;
-		this.text = AssTag.strip(kText);
+		this.text = ASSTag.strip(kText);
 	}
 	
 	public void createExtras(Style lineStyle,Meta meta){
@@ -146,7 +146,7 @@ public class Line implements Cloneable{
 			Syl syl = new Syl();
 			++sylCount;
 			syl.kTag = matcher.group(2);
-			syl.duration = new AssTime( Integer.parseInt(matcher.group(3))*10 ).toFrame(frameRate);
+			syl.duration = new ASSTime( Integer.parseInt(matcher.group(3))*10 ).toFrame(frameRate);
 			syl.dur = syl.duration;
 			syl.sText = matcher.group(5);
 			syl.startTime = start2Syl+this.startTime;

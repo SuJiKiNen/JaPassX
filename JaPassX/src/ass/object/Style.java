@@ -2,7 +2,7 @@ package ass.object;
 
 import java.util.regex.Pattern;
 
-import ass.util.AssColor;
+import ass.util.ASSColor;
 
 
 public class Style implements Cloneable{
@@ -37,10 +37,10 @@ public class Style implements Cloneable{
 		name = items[0];
 		fontName =  items[1];
 		fontSize = Integer.parseInt(items[2]);
-		color1 = new AssColor(items[3]).toString();
-		color2 = new AssColor(items[4]).toString();
-		color3 = new AssColor(items[5]).toString();
-		color4 = new AssColor(items[6]).toString();
+		color1 = new ASSColor(items[3]).toString();
+		color2 = new ASSColor(items[4]).toString();
+		color3 = new ASSColor(items[5]).toString();
+		color4 = new ASSColor(items[6]).toString();
 		bold = (Integer.parseInt(items[7]) == -1);
 		italic = (Integer.parseInt(items[8]) == -1);
 		underline = (Integer.parseInt(items[9]) == -1);

@@ -8,17 +8,17 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-public class AssParser {
+public class ASSParser {
 	/**
 	 * Parses the ass file,the filename can be absolute path,or you can drop the ass file 
 	 * to processing data folder,then use dataPath to get the absolute ass file
 	 * @param filename
 	 * @return the ass
 	 */
-	public static Ass parseFile(String filename) {
+	public static ASS parseFile(String filename) {
 		return parseFile(filename, 23.976f);
 	}
-	public static Ass parseFile(String filename,float frameRate){
+	public static ASS parseFile(String filename,float frameRate){
 
 		Meta meta = new Meta();
 		Hashtable<String,Style> styles = new Hashtable<String,Style>();
@@ -55,13 +55,13 @@ public class AssParser {
 			e.printStackTrace();
 		}
 
-		Ass ass = new Ass();
+		ASS ass = new ASS();
 		ass.setMeta(meta);
 		ass.setStyles(styles);
 		ass.setLines(lines);
 		return ass;
 	}
 	public static void main(String [] args) {
-		Ass ass = AssParser.parseFile("G:\\FXWorks\\idolm\\idolm-furigana - 4processing.ass");
+		ASS ass = ASSParser.parseFile("G:\\FXWorks\\idolm\\idolm-furigana - 4processing.ass");
 	}
 }

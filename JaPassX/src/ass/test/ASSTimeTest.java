@@ -1,15 +1,15 @@
 package ass.test;
 
-import ass.util.AssTime;
+import ass.util.ASSTime;
 
-public class AssTimeTest {
+public class ASSTimeTest {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		AssTime assTime = new AssTime("0:00:05.00");
+		ASSTime assTime = new ASSTime("0:00:05.00");
 		System.out.println(assTime.toString());
 		System.out.println(assTime.toMillis());
 	}

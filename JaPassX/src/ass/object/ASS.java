@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Enumeration;;
 
-public class Ass implements Cloneable{
+public class ASS implements Cloneable{
 	public Meta meta;
 	public Hashtable<String,Style> styles;
 	public ArrayList<Line> lines;
 	
-	public Ass(){
+	public ASS(){
 		meta = new Meta();
 		styles = new Hashtable<String, Style>();
 		lines = new ArrayList<Line>();
@@ -44,10 +44,10 @@ public class Ass implements Cloneable{
 	}
 	
 	
-	public Ass clone(){
-		Ass ass = null;
+	public ASS clone(){
+		ASS ass = null;
 		try {
-			ass = (Ass)super.clone();
+			ass = (ASS)super.clone();
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}

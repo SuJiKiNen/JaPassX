@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 	 * example, CC (the hex value of 204) is the alpha value, and the remainder
 	 * is identical to a web color.
  */
-public class AssColor {
+public class ASSColor {
 	public int r;
 	public int g;
 	public int b;
@@ -27,7 +27,7 @@ public class AssColor {
 	 * @param b
 	 *            the blue component.
 	 */
-	public AssColor(int r,int g,int b){
+	public ASSColor(int r,int g,int b){
 		this.r = r;
 		this.g = g;
 		this.b = b;
@@ -45,7 +45,7 @@ public class AssColor {
 	 * @param a
 	 *            the alpha component.
 	 */
-	public AssColor(int r,int g,int b,int a){
+	public ASSColor(int r,int g,int b,int a){
 		this.r = r;
 		this.g = g;
 		this.b = b;
@@ -59,7 +59,7 @@ public class AssColor {
 	 * @param color
 	 *            the color string is standard ass color format like &H0BFFFFFF
 	 */
-	public AssColor(String color){
+	public ASSColor(String color){
 		Pattern pattern = Pattern.compile("^&h[0-9a-f]{8}$",Pattern.CASE_INSENSITIVE);
 		Matcher matcher =  pattern.matcher(color);
 		boolean match = matcher.matches();

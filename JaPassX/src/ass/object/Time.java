@@ -63,9 +63,10 @@ public class Time implements Cloneable {
 			   }
 		   }
 	 }
-	 
-	 public static void shift(ArrayList<Line> lines,int amount){
-		 shift(lines.toArray( new Line[ lines.size() ]), amount);
+
+	 public static void shift(Line line,int amount) {
+		 Line lines[] = {line};
+		 shift(lines,amount);
 	 }
 	 
 	 public static void shift(Line lines[],int amount) {
@@ -94,6 +95,11 @@ public class Time implements Cloneable {
 		   }
 	 }
 	 
+	 public static void shift(Syl syl,int amount) {
+		 Syl syls[] = {syl};
+		 shift(syls, amount);
+	 }
+	 
 	 public static void shift(Syl syls[],int amount){
 		 for(int i=0; i<syls.length; i++) {
 			 Syl syl = syls[i];
@@ -102,6 +108,11 @@ public class Time implements Cloneable {
 			 syl.midTime    += amount;
 			 syl.endTime    += amount;
 		 }
+	 }
+	 
+	 public static void shift(Char c,int amount){
+		 Char chars[] = {c};
+		 shift(chars,amount);
 	 }
 	 
 	 public static void shift(Char chars[],int amount) {

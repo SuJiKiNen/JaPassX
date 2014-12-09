@@ -1,5 +1,7 @@
 package ass.test;
 
+import java.util.ArrayList;
+
 import ass.object.ASS;
 import ass.object.ASSParser;
 import ass.object.Line;
@@ -15,11 +17,10 @@ public class ASSTest {
 	public static void main(String[] args) {
 		ASS ass = ASSParser.parseFile("G:\\FXWorks\\idolm\\idolm-furigana - 4processing.ass");
 		
-		Line[] lines = ass.getLines();
-		//Time.shift(lines,20);
-		
-		for(Line line: lines) {
-			System.out.println(line.time.start+" "+line.text);
-		}
+			for(int i=0; i<ass.lines.size(); i++) {
+				Line line = ass.lines.get(i);
+				//Time.shift(line,20);
+				System.out.println(ass.lines.get(i).startTime);
+			}
 	}
 }

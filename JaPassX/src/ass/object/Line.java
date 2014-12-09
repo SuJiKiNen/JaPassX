@@ -9,44 +9,12 @@ import ass.util.Regex;
 import ass.util.TextExtents;
 
 
-public class Line implements Cloneable{
+public class Line extends TextUnit implements Cloneable{
 	static int lineCount;
-	
-	public int layer;
-	public int startTime;
-	public int endTime;
-	public String style;
-	public String actor;
-	public int marginL;
-	public int marginR;
-	public int marginV;
-	public String effect;
 	public String kText;
-	
-	public int midTime;
-	public int duration;
-	public int dur;
-	public int inGap;
-	public int outGap;
-
-	public float width;
-	public float height;
-	public float left;
-	public float top;
-	public float right;
-	public float bottom;
-	public float center;
-	public float middle;
-	public float x;
-	public float y;
 	public float frameRate;
-
-	public String text;
 	public String rawText;
 	public Style styleRef;
-	public int i;
-	
-	public Time time;
 	public ArrayList<Syl> syls;
 	public ArrayList<Char> chars;
 	
@@ -54,8 +22,6 @@ public class Line implements Cloneable{
 		// add check
 		this.frameRate = frameRate;
 		++this.lineCount;
-		System.out.println(s);
-		System.out.println(lineCount);
 		Pattern pattern = Pattern.compile("^Dialogue:\\s*(\\d*?),(\\d:\\d\\d:\\d\\d\\.\\d\\d),(\\d:\\d\\d:\\d\\d\\.\\d\\d),(.*?),(.*?),(\\d*?),(\\d*?),(\\d*?),(.*?),(.*)");
 		Matcher m = pattern.matcher(s);
 		boolean b = m.matches();
@@ -78,10 +44,7 @@ public class Line implements Cloneable{
 		midTime = startTime + (duration>>1);
 		dur = duration;
 		
-		time = new Time();
-		time.start = startTime;
-		time.mid = midTime;
-		time.end = endTime;
+		time = new Time(startTime,midTime,endTime);
 		
 		i = lineCount;
 		styleRef = lineStyle;
@@ -130,8 +93,6 @@ public class Line implements Cloneable{
 			middle = bottom - height / 2.0f;
 			top = bottom - height;
 		}
-		x = center;	
-		y = top+textExtents.getAscent();
 		createSyls();
 		createChars();
 	}
@@ -151,9 +112,11 @@ public class Line implements Cloneable{
 			syl.sText = matcher.group(5);
 			syl.startTime = start2Syl+this.startTime;
 			syl.endTime = syl.startTime + syl.dur;
+			syl.midTime = (syl.startTime + syl.endTime)>>1;
 			syl.syl2End = this.dur - syl.endTime;
 			syl.start2Syl = start2Syl;
 			start2Syl+=syl.dur;
+			syl.time = new Time(syl.startTime,syl.midTime,syl.endTime);
 			
 			String preSpaceReg = "^([\\s"+Regex.UNICODE_SPACES+"]*)";
 			String PostSpaceReg = "([\\s"+Regex.UNICODE_SPACES+"]*)$";
@@ -203,6 +166,7 @@ public class Line implements Cloneable{
 				c.midTime = syl.midTime;
 				c.duration = c.endTime - startTime;
 				c.dur = c.duration;
+				c.time = new Time(c.startTime, c.midTime, c.endTime);
 				c.text = String.valueOf( syl.text.charAt(j) );
 				TextExtents textExtents = new TextExtents(c.text, syl.styleRef);
 				c.width = textExtents.getWidth();

@@ -2,7 +2,8 @@ package ass.object;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Enumeration;;
+import java.util.Enumeration;
+
 
 public class ASS implements Cloneable{
 	public Meta meta;
@@ -38,11 +39,10 @@ public class ASS implements Cloneable{
 	public void setLines(ArrayList<Line> lines) {
 		this.lines = lines;
 	}
-	public Line getLineByFrame(int frame) {
+	public Line getLineByFrame(String styleName,int frame) {
 		// to do 
 		return lines.get(0);
 	}
-	
 	
 	public ASS clone(){
 		ASS ass = null;

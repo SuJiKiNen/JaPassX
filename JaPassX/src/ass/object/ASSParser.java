@@ -61,7 +61,4 @@ public class ASSParser {
 		ass.setLines(lines);
 		return ass;
 	}
-	public static void main(String [] args) {
-		ASS ass = ASSParser.parseFile("G:\\FXWorks\\idolm\\idolm-furigana - 4processing.ass");
-	}
 }

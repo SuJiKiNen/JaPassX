@@ -100,6 +100,12 @@ public class Line extends TextUnit implements Cloneable{
 		syls = new ArrayList<Syl>();
 		Pattern p = Pattern.compile("\\{(.*?)\\\\([kK][of]?)(\\d+)(.*?)\\}([^{]*)");
 		Matcher matcher = p.matcher(kText);
+		// if no syls find consider the whole line as a single syl
+		if(matcher.lookingAt()==false) {
+			kText = String.format("{\\k%d}", (int)(this.dur*this.frameRate/10.0 + 0.5) )+kText;
+			matcher = p.matcher(kText);
+		}
+		
 		int sylCount = 0;
 		int start2Syl = 0;
 		float currentX = this.left;

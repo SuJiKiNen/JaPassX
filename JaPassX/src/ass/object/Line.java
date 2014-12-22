@@ -51,6 +51,7 @@ public class Line extends TextUnit implements Cloneable{
 		TextExtents textExtents = new TextExtents(text, lineStyle);
 		width = textExtents.getWidth();
 		height = textExtents.getHeight();
+		size = new Size(width, height);
 	
 		int actualMarginL = this.marginL > 0 ? this.marginL : lineStyle.marginL;
 		int actualMarginR = this.marginR > 0 ? this.marginR : lineStyle.marginR;
@@ -143,6 +144,7 @@ public class Line extends TextUnit implements Cloneable{
 			textExtents = new TextExtents(syl.text, styleRef);
 			syl.height = textExtents.getHeight();
 			syl.width = textExtents.getWidth();
+			syl.size = new Size(syl.width,syl.height);
 			currentX = currentX + syl.width;
 			
 			textExtents = new TextExtents(syl.postSpace, styleRef);
@@ -177,6 +179,7 @@ public class Line extends TextUnit implements Cloneable{
 				TextExtents textExtents = new TextExtents(c.text, syl.styleRef);
 				c.width = textExtents.getWidth();
 				c.height = textExtents.getHeight();
+				c.size = new Size(c.width,c.height);
 				c.top = syl.top;
 				c.bottom = syl.bottom;
 				c.left = curX;

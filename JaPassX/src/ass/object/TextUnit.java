@@ -8,7 +8,7 @@ public abstract class TextUnit {
 	public int midTime;
 	public int duration;
 	public int dur;
-	
+	public Size size;
 	public float width;
 	public float height;
 	public float left;

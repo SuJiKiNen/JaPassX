@@ -5,9 +5,6 @@ public class Syl extends TextUnit implements Cloneable{
 	// time info
 	public int start2Syl;
 	public int syl2End;
-
-	// position info
-
 	// text and size info
 	public String sText;
 	public String preSpace;

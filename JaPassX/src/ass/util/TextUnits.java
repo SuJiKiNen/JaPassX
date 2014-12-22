@@ -1,26 +1,19 @@
 package ass.util;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 
 import ass.object.TextUnit;
 
 public class TextUnits {
-	public static void filter(TextUnit [] textUnits,Filter filter) {
-		ArrayList<TextUnit> newTextUnits = new ArrayList<TextUnit>();
+	public static TextUnit [] filter(TextUnit [] textUnits,Filter filter) {
+		int j = 0;
 		for(int i=0; i<textUnits.length; i++) {
 			if(filter == null || filter.accept(textUnits[i])) {
-				newTextUnits.add(textUnits[i]);
+				textUnits[j++] = textUnits[i];
 			}
 		}
-		textUnits = newTextUnits.toArray(new TextUnit[ newTextUnits.size() ]);
-	}
-	public static void filter(ArrayList<TextUnit> textUnits,Filter filter) {
-		ArrayList<TextUnit> newTextUnits = new ArrayList<TextUnit>();
-		for(int i=0; i<textUnits.size(); i++) {
-			if(filter == null || filter.accept(textUnits.get(i))) {
-				newTextUnits.add(textUnits.get(i));
-			}
-		}
-		textUnits = newTextUnits;
+		System.arraycopy(textUnits,0,textUnits,0,j);
+		System.out.println(textUnits.length);
+		return textUnits;
 	}
 }

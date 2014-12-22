@@ -8,6 +8,8 @@ import ass.object.Line;
 import ass.object.Syl;
 import ass.object.TextUnit;
 import ass.object.Time;
+import ass.util.Filter;
+import ass.util.TextUnits;
 
 public class ASSTest {
 
@@ -16,11 +18,25 @@ public class ASSTest {
 	 */
 	public static void main(String[] args) {
 		ASS ass = ASSParser.parseFile("G:\\FXWorks\\idolm\\idolm-furigana - 4processing.ass");
-		
-			for(int i=0; i<ass.lines.size(); i++) {
-				Line line = ass.lines.get(i);
-				//Time.shift(line,20);
-				System.out.println(ass.lines.get(i).startTime);
+			Line lines[] = ass.getLines();
+			TextUnits.filter(lines, new Filter() {
+				
+				@Override
+				public boolean accept(TextUnit textUnit) {
+					// TODO Auto-generated method stub
+					if(textUnit.time.start>500) {
+						return true;
+					}
+					return false;
+				}
+			});
+			for(Line line: lines) {
+				System.out.println(line.time.start+" "+line.text);
 			}
+			/*
+	        for(int i=0; i<lines.length; i++) {
+	        	Line line = lines[i];
+	        	System.out.println( line.time.start + " " + line.text );
+	        }*/
 	}
 }

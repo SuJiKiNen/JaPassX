@@ -94,6 +94,7 @@ public class Line extends TextUnit implements Cloneable{
 			middle = bottom - height / 2.0f;
 			top = bottom - height;
 		}
+		createPoints(this);
 		createSyls();
 		createChars();
 	}
@@ -158,6 +159,7 @@ public class Line extends TextUnit implements Cloneable{
 			syl.i = sylCount;
 			syl.li = i;
 			syl.styleRef = styleRef.clone();
+			createPoints(syl);
 			syls.add(syl);
 		}
 	}
@@ -189,10 +191,24 @@ public class Line extends TextUnit implements Cloneable{
 				c.middle = c.top + c.height/2.0f;
 				c.styleRef = syl.styleRef.clone();
 				c.sylRef = syl.clone();
+				createPoints(c);
 				chars.add(c);
 			}
 		}
 	}
+	
+    public void createPoints(TextUnit t){
+    	t.p = new Point[10];
+		t.p[7] = new Point(t.left,t.top);
+		t.p[9] = new Point(t.right,t.top);
+		t.p[3] = new Point(t.right,t.bottom);
+		t.p[1] = new Point(t.left,t.bottom);
+		t.p[8] = t.p[7].midPoint( t.p[9] );
+		t.p[2] = t.p[1].midPoint( t.p[3] );
+		t.p[4] = t.p[1].midPoint( t.p[7] );
+		t.p[6] = t.p[3].midPoint( t.p[9] );
+		t.p[5] = t.p[2].midPoint( t.p[8] );
+    }
 
 	public Line clone(){
 		Line line  = null;

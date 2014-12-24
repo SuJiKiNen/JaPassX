@@ -11,6 +11,7 @@ public abstract class TextUnit {
 	public Size size;
 	public float width;
 	public float height;
+	public Point [] p;
 	public float left;
 	public float top;
 	public float right;

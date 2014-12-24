@@ -18,19 +18,10 @@ public class FilterTest {
 	public static void main(String[] args) {
 		ASS ass = ASSParser.parseFile("G:\\FXWorks\\idolm\\idolm-furigana - 4processing.ass");
 		Line lines[] = ass.getLines();
-	
-		TextUnits.filter(lines, new Filter() {
-			
-			@Override
-			public boolean accept(TextUnit textUnit) {
-				// TODO Auto-generated method stub
-				if(textUnit.startTime>12) {
-					return true;
-				}
-				return false;
-			}
-		});
-
+		lines = TextUnits.filterBlank(lines);
+		for(Line line: lines) {
+			System.out.println(line.time.start+" "+line.text);
+		}
 	}
 
 }

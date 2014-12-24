@@ -19,12 +19,13 @@ public class ASSTest {
 	public static void main(String[] args) {
 		ASS ass = ASSParser.parseFile("G:\\FXWorks\\idolm\\idolm-furigana - 4processing.ass");
 			Line lines[] = ass.getLines();
-			TextUnits.filter(lines, new Filter() {
+			System.out.println(lines.length);
+			lines = TextUnits.filter(lines, new Filter() {
 				
 				@Override
 				public boolean accept(TextUnit textUnit) {
 					// TODO Auto-generated method stub
-					if(textUnit.time.start>500) {
+					if(textUnit.text.equals("")==false) {
 						return true;
 					}
 					return false;
@@ -38,5 +39,6 @@ public class ASSTest {
 	        	Line line = lines[i];
 	        	System.out.println( line.time.start + " " + line.text );
 	        }*/
+			System.out.println(lines.length);
 	}
 }

@@ -16,10 +16,11 @@ public class ASSParser {
 	 * @return the ass
 	 */
 	public static ASS parseFile(String filename) {
+		Line.lineCount = 0;
 		return parseFile(filename, 23.976f);
 	}
 	public static ASS parseFile(String filename,float frameRate){
-
+		Line.lineCount = 0;
 		Meta meta = new Meta();
 		Hashtable<String,Style> styles = new Hashtable<String,Style>();
 		ArrayList<Line> lines = new ArrayList<Line>();

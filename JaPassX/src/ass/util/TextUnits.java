@@ -19,6 +19,7 @@ public class TextUnits {
 		}
 		Line [] leftLines = new Line[j];
 		System.arraycopy(lines,0,leftLines,0,j);
+		reIndex(leftLines);
 		return leftLines;
 	}
 	public static Syl [] filter(Syl [] syls,Filter filter) {
@@ -30,6 +31,7 @@ public class TextUnits {
 		}
 		Syl [] leftSyls = new Syl[j];
 		System.arraycopy(syls,0,leftSyls,0,j);
+		reIndex(leftSyls);
 		return leftSyls;
 	}
 	public static Char [] filter(Char [] chars,Filter filter) {
@@ -41,6 +43,7 @@ public class TextUnits {
 		}
 		Char [] leftChars = new Char[j];
 		System.arraycopy(chars,0,leftChars,0,j);
+		reIndex(leftChars);
 		return leftChars;
 	}
 	public static Line[] filterBlank(Line [] lines){
@@ -53,6 +56,7 @@ public class TextUnits {
 				return true;
 			}
 		});
+		reIndex(lines);
 		return lines;
 	}
 	public static Syl[] filterBlank(Syl [] syls){
@@ -65,6 +69,7 @@ public class TextUnits {
 				return true;
 			}
 		});
+		reIndex(syls);
 		return syls;
 	}
 	public static Char[] filterBlank(Char [] chars){
@@ -77,6 +82,22 @@ public class TextUnits {
 				return true;
 			}
 		});
+		reIndex(chars);
 		return chars;
+	}
+	public static void reIndex(Line [] lines) {
+		for(int i=0; i<lines.length; i++) {
+			lines[i].i = i + 1;
+		}
+	}
+	public static void reIndex(Syl [] syls) {
+		for(int i=0; i<syls.length; i++) {
+			syls[i].i = i + 1;
+		}
+	}
+	public static void reIndex(Char[] chars){
+		for(int i=0; i<chars.length; i++) {
+			chars[i].i = i + 1;
+		}
 	}
 }

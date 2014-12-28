@@ -10,7 +10,7 @@ import ass.util.TextExtents;
 
 
 public class Line extends TextUnit implements Cloneable{
-	static int lineCount;
+	static int lineCount = 0;
 	public String kText;
 	public float frameRate;
 	public String rawText;
@@ -171,6 +171,7 @@ public class Line extends TextUnit implements Cloneable{
 			float curX = syl.left;
 			for(int j=0; j<syl.text.length(); j++) {
 				Char c = new Char();
+				c.i = j + 1;
 				c.startTime = syl.start2Syl;
 				c.endTime = syl.endTime;
 				c.midTime = syl.midTime;

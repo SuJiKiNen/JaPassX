@@ -4,36 +4,31 @@ import java.util.ArrayList;
 
 public class Time implements Cloneable {
 	 public int start;
-	 public int mid;
 	 public int end;
 	 
 	 public Time(){
 		 this.start = 0;
-		 this.mid   = 0;
 		 this.end   = 0;
 	 }
 	 public Time(Time t) {
 		 this.start = t.start;
-		 this.mid = t.mid;
 		 this.end = t.end;
 	 }
-	 public Time(int start,int mid,int end) {
-		this.start = start;
-		this.mid   = mid;
-		this.end   = end;
+	 
+	 public Time(int start,int end){
+		 this.start = start;
+		 this.end = end;
 	 }
 	 
 	 public Time add(Time augend){
 		 Time result = new Time();
 		 result.start = this.start + augend.start;
-		 result.mid   = this.mid   + augend.mid;
 		 result.end   = this.end   + augend.end;
 		 return result;
 	 }
 	 
 	 public void shift(int amount) {
 		 this.start += amount;
-		 this.mid   += amount;
 		 this.end   += amount;
 	 }
 	 
@@ -43,14 +38,12 @@ public class Time implements Cloneable {
 			   Line line = lines.get(i);
 			   line.time.shift(amount);
 			   line.startTime += amount;
-			   line.midTime   += amount;
 			   line.endTime   += amount;
 			   
 			   for(int j=0; j<line.syls.size(); j++) {
 				   Syl syl = line.syls.get(j);
 				   syl.time.shift(amount);
 				   syl.startTime += amount;
-				   syl.midTime   += amount;
 				   syl.endTime   += amount;
 			   }
 			   
@@ -58,7 +51,6 @@ public class Time implements Cloneable {
 				   Char c = line.chars.get(j);
 				   c.time.shift(amount);
 				   c.startTime += amount;
-				   c.midTime   += amount;
 				   c.endTime   += amount;
 			   }
 		   }
@@ -74,14 +66,12 @@ public class Time implements Cloneable {
 			   Line line = lines[i];
 			   line.time.shift(amount);
 			   line.startTime += amount;
-			   line.midTime   += amount;
 			   line.endTime   += amount;
 			   
 			   for(int j=0; j<line.syls.size(); j++) {
 				   Syl syl = line.syls.get(j);
 				   syl.time.shift(amount);
 				   syl.startTime += amount;
-				   syl.midTime   += amount;
 				   syl.endTime   += amount;
 			   }
 			   
@@ -89,7 +79,6 @@ public class Time implements Cloneable {
 				   Char c = line.chars.get(j);
 				   c.time.shift(amount);
 				   c.startTime += amount;
-				   c.midTime   += amount;
 				   c.endTime   += amount;
 			   }
 		   }
@@ -105,7 +94,6 @@ public class Time implements Cloneable {
 			 Syl syl = syls[i];
 			 syl.time.shift(amount);
 			 syl.startTime  += amount;
-			 syl.midTime    += amount;
 			 syl.endTime    += amount;
 		 }
 	 }
@@ -120,11 +108,10 @@ public class Time implements Cloneable {
 			 Char c = chars[i];
 			 c.time.shift(amount);
 			 c.startTime += amount;
-			 c.midTime   += amount;
 			 c.endTime   += amount;
 		 }
 	 }
-	 
+
 	 public Time clone(){
 		Time time=null;
 		try {

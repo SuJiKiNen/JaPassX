@@ -5,7 +5,6 @@ public abstract class TextUnit {
 	public Time time;
 	public int startTime;
 	public int endTime;
-	public int midTime;
 	public int duration;
 	public int dur;
 	public Size size;

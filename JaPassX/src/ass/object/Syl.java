@@ -13,7 +13,7 @@ public class Syl extends TextUnit implements Cloneable{
 	
 	public int li;
 	public Style styleRef;
-
+	public Line lineRef;
 	public Syl clone(){
 		Syl syl = null;
 		try {
@@ -28,7 +28,7 @@ public class Syl extends TextUnit implements Cloneable{
 	@Override
 	public String toString() {
 		return "Syl [startTime=" + startTime + ", endTime=" + endTime
-				+ ", midTime=" + midTime + ", text=" + text + ", i=" + i + "]";
+				+"text=" + text + ", i=" + i + "]";
 	}
 	
 }

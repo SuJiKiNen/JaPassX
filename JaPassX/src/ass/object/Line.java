@@ -41,10 +41,9 @@ public class Line extends TextUnit implements Cloneable{
 	
 	public void createExtras(Style lineStyle,Meta meta){
 		duration = endTime - startTime;
-		midTime = startTime + (duration>>1);
 		dur = duration;
 		
-		time = new Time(startTime,midTime,endTime);
+		time = new Time(startTime,endTime);
 		
 		i = lineCount;
 		styleRef = lineStyle;
@@ -120,11 +119,10 @@ public class Line extends TextUnit implements Cloneable{
 			syl.sText = matcher.group(5);
 			syl.startTime = start2Syl+this.startTime;
 			syl.endTime = syl.startTime + syl.dur;
-			syl.midTime = (syl.startTime + syl.endTime)>>1;
 			syl.syl2End = this.dur - syl.endTime;
 			syl.start2Syl = start2Syl;
 			start2Syl+=syl.dur;
-			syl.time = new Time(syl.startTime,syl.midTime,syl.endTime);
+			syl.time = new Time(syl.startTime,syl.endTime);
 			
 			String preSpaceReg = "^([\\s"+Regex.UNICODE_SPACES+"]*)";
 			String PostSpaceReg = "([\\s"+Regex.UNICODE_SPACES+"]*)$";
@@ -158,7 +156,8 @@ public class Line extends TextUnit implements Cloneable{
 			syl.middle = syl.top + syl.height/2.0f;
 			syl.i = sylCount;
 			syl.li = i;
-			syl.styleRef = styleRef.clone();
+			syl.styleRef = styleRef;
+			syl.lineRef = this;
 			createPoints(syl);
 			syls.add(syl);
 		}
@@ -174,10 +173,9 @@ public class Line extends TextUnit implements Cloneable{
 				c.i = j + 1;
 				c.startTime = syl.start2Syl;
 				c.endTime = syl.endTime;
-				c.midTime = syl.midTime;
 				c.duration = c.endTime - startTime;
 				c.dur = c.duration;
-				c.time = new Time(c.startTime, c.midTime, c.endTime);
+				c.time = new Time(c.startTime,c.endTime);
 				c.text = String.valueOf( syl.text.charAt(j) );
 				TextExtents textExtents = new TextExtents(c.text, syl.styleRef);
 				c.width = textExtents.getWidth();
@@ -191,7 +189,8 @@ public class Line extends TextUnit implements Cloneable{
 				c.center = c.left + c.width/2.0f;
 				c.middle = c.top + c.height/2.0f;
 				c.styleRef = syl.styleRef.clone();
-				c.sylRef = syl.clone();
+				c.sylRef = syl;
+				c.lineRef = this;
 				createPoints(c);
 				chars.add(c);
 			}

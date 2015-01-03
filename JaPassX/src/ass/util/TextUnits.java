@@ -85,6 +85,7 @@ public class TextUnits {
 		reIndex(chars);
 		return chars;
 	}
+	
 	public static void reIndex(Line [] lines) {
 		for(int i=0; i<lines.length; i++) {
 			lines[i].i = i + 1;

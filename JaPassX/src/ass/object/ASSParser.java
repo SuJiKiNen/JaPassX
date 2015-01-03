@@ -11,7 +11,8 @@ import java.util.Hashtable;
 import org.omg.CORBA.VersionSpecHelper;
 
 public class ASSParser {
-	public static final String VERSION = "V1.0-Alpha";
+	// http://semver.org/
+	public static final String VERSION = "0.1.0";
 	/**
 	 * Parses the ass file,the filename can be absolute path,or you can drop the ass file 
 	 * to processing data folder,then use dataPath to get the absolute ass file
@@ -65,7 +66,7 @@ public class ASSParser {
 		ass.setLines(lines);
 		return ass;
 	}
-	public static String getVERSION() {
+	public static String getVersion() {
 		return VERSION;
 	}
 	

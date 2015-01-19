@@ -1,5 +1,6 @@
 package ass.object;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -237,5 +238,4 @@ public class Line extends TextUnit implements Cloneable{
 	public Char[] getChars() {
 		return chars.toArray(new Char[ chars.size() ]);
 	}
-
 }

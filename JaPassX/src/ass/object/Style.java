@@ -29,7 +29,7 @@ public class Style implements Cloneable{
 	public int marginR;
 	public int marginV;
 	public String encoding;
-	
+	public String textLayout;
 	public Style(String s) {
 		s = s.substring(7);
 		Pattern p = Pattern.compile(",");

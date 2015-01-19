@@ -1,5 +1,8 @@
 package ass.util;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 import ass.object.Char;
 import ass.object.Line;
 import ass.object.Syl;
@@ -94,5 +97,15 @@ public class TextUnits {
 		for(int i=0; i<chars.length; i++) {
 			chars[i].i = i + 1;
 		}
+	}
+	
+	public static void sort(Line [] lines,Comparator<Line> comparator){
+		Arrays.sort(lines,comparator);
+	}
+	public static void sort(Syl [] syls,Comparator<Syl> comparator) {
+		Arrays.sort(syls,comparator);
+	}
+	public static void sort(Char [] chars,Comparator<Char> comparator) {
+		Arrays.sort(chars,comparator);
 	}
 }

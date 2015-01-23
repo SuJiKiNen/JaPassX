@@ -106,7 +106,10 @@ public class Line extends TextUnit implements Cloneable{
 		if(matcher.lookingAt()==false) {
 			kText = String.format("{\\k%d}", (int)(this.dur*this.frameRate/10.0 + 0.5) )+kText;
 			matcher = p.matcher(kText);
+		}else{
+			matcher.reset();
 		}
+		
 		
 		int sylCount = 0;
 		int start2Syl = 0;
